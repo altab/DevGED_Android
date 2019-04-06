@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Adding a new ressource", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Add new ressources", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
