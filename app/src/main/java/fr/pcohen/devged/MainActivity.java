@@ -11,9 +11,21 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+//import com.crashlytics.android.Crashlytics;
+import com.firebase.ui.auth.AuthUI;
+
+import java.util.Arrays;
+//import com.firebase.ui.auth.ErrorCodes;
+import com.firebase.ui.auth.IdpResponse;
+//import com.openclassrooms.firebaseoc.api.UserHelper;
+//import com.openclassrooms.firebaseoc.auth.ProfileActivity;
+//import com.openclassrooms.firebaseoc.base.BaseActivity;
+//import com.openclassrooms.firebaseoc.mentor_chat.MentorChatActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnConnexion;
+    private static final int RC_SIGN_IN = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +76,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_connexion:
                 //test btnConnexion
-                Toast.makeText(this, "This is my Toast message!",Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "This is my Toast message!",Toast.LENGTH_LONG).show();
+                onClickLoginButton();
         }
 
     }
+
+    public void onClickLoginButton() {
+        // 3 - Launch Sign-In Activity when user clicked on Login Button
+        this.startSignInActivity();
+    }
+
+    private void startSignInActivity(){
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        //.setTheme(R.style.LoginTheme)
+                        .setAvailableProviders(
+                                Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build()))
+                        .setIsSmartLockEnabled(false, true)
+                        //.setLogo(R.drawable.ic_logo_auth)
+                        .build(),
+                RC_SIGN_IN);
+    }
+
 }
