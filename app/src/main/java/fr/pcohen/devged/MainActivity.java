@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
-//import com.crashlytics.android.Crashlytics;
 import com.firebase.ui.auth.AuthUI;
 
 import java.util.Arrays;
@@ -24,10 +23,6 @@ import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 
 import butterknife.BindView;
-//import com.openclassrooms.firebaseoc.api.UserHelper;
-//import com.openclassrooms.firebaseoc.auth.ProfileActivity;
-//import com.openclassrooms.firebaseoc.base.BaseActivity;
-//import com.openclassrooms.firebaseoc.mentor_chat.MentorChatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -82,8 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_connexion:
-                //test btnConnexion
-                //Toast.makeText(this, "This is my Toast message!",Toast.LENGTH_LONG).show();
                 onClickLoginButton();
         }
 
@@ -113,31 +106,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.handleResponseAfterSignIn(requestCode, resultCode, data);
     }
 
-    private void showSnackBar(CoordinatorLayout coordinatorLayout, String message){
-        Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_SHORT).show();
-    }
-
     private void handleResponseAfterSignIn(int requestCode, int resultCode, Intent data){
 
         IdpResponse response = IdpResponse.fromResultIntent(data);
 
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) { // SUCCESS
-                //showSnackBar(this.coordinatorLayout, getString(R.string.connection_succeed));
-                Log.d("SUCCESS ************ ", getString(R.string.connection_succeed));
+                Log.d("CONNEXION", getString(R.string.connection_succeed));
                 Toast.makeText(this, getString(R.string.connection_succeed), Toast.LENGTH_LONG).show();
             } else { // ERRORS
                 if (response == null) {
-                    //showSnackBar(this.coordinatorLayout, getString(R.string.error_authentication_canceled));
-                    Log.d("ERR **************", getString(R.string.error_authentication_canceled));
+                    Log.d("CONNEXION", getString(R.string.error_authentication_canceled));
                     Toast.makeText(this, getString(R.string.error_authentication_canceled), Toast.LENGTH_LONG).show();
                 } else if (Objects.requireNonNull(response.getError()).getErrorCode() == ErrorCodes.NO_NETWORK) {
-                    //showSnackBar(this.coordinatorLayout, getString(R.string.error_no_internet));
-                    Log.d("ERR **************", getString(R.string.error_no_internet));
+                    Log.d("CONNEXION", getString(R.string.error_no_internet));
                     Toast.makeText(this, getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
                 } else if (response.getError().getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-                    //showSnackBar(this.coordinatorLayout, getString(R.string.error_unknown_error));
-                    Log.d("ERR **************", getString(R.string.error_unknown_error));
+                    Log.d("CONNEXION", getString(R.string.error_unknown_error));
                     Toast.makeText(this, getString(R.string.error_unknown_error), Toast.LENGTH_LONG).show();
                 }
             }
