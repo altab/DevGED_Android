@@ -14,11 +14,11 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
+import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 
@@ -88,12 +88,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void startSignInActivity(){
+        Log.d("DEVGED", "**********************************");
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build()
+                //,new AuthUI.IdpConfig.PhoneBuilder().build()
+                //,new AuthUI.IdpConfig.GoogleBuilder().build()
+                //,new AuthUI.IdpConfig.FacebookBuilder().build()
+                //,new AuthUI.IdpConfig.TwitterBuilder().build());
+                );
+
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setTheme(R.style.LoginTheme)
-                        .setAvailableProviders(
-                                Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build()))
+                        .setAvailableProviders(providers)
                         .setIsSmartLockEnabled(false, true)
                         //.setLogo(R.drawable.ic_logo_auth)
                         .build(),
@@ -113,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) { // SUCCESS
                 Log.d("CONNEXION", getString(R.string.connection_succeed));
+                Intent searchActivity = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(searchActivity);
                 Toast.makeText(this, getString(R.string.connection_succeed), Toast.LENGTH_LONG).show();
             } else { // ERRORS
                 if (response == null) {
