@@ -124,6 +124,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent searchActivity = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(searchActivity);
                 Toast.makeText(this, getString(R.string.connection_succeed), Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                //ferme l'activite
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
             } else { // ERRORS
                 if (response == null) {
                     Log.d("CONNEXION", getString(R.string.error_authentication_canceled));
