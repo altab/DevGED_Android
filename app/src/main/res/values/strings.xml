@@ -13,5 +13,6 @@
     <string name="button_login_text_logged">Afficher le profil</string>
     <string name="button_login_text_not_logged">Connexion</string>
     <string name="title_activity_search">Rechercher</string>
+    <string name="emptyField">Saisie vide</string>
 
 </resources>

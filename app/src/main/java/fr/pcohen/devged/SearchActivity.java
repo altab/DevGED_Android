@@ -10,13 +10,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+
 public class SearchActivity extends AppCompatActivity {
 
     private EditText searchText;
     private Button btnSearch;
 
+    // Access a Cloud Firestore instance
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -49,7 +57,11 @@ public class SearchActivity extends AppCompatActivity {
 
                 try {
                     search = searchText.getText().toString();
-                    textSearch(search);
+                    if(search!="" && search != null) {
+                        textSearch(search);
+                    } else {
+                        Toast.makeText(SearchActivity.this, getString(R.string.emptyField), Toast.LENGTH_SHORT).show();
+                    }
                 } catch (Exception e) {
                     Toast.makeText(SearchActivity.this, "Probleme saisie", Toast.LENGTH_SHORT).show();
                 }
