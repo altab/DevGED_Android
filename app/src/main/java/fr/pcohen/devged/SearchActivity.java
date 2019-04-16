@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.pcohen.devged.business.Search;
@@ -25,7 +28,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private EditText searchText;
     private Button btnSearch;
-    private List<Search> searchList;
+    private List<Search> searchList = new ArrayList<>();
 
     // Access a Cloud Firestore instance
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -34,7 +37,6 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.d("TEST", db.collection("/DevGED").getId());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
@@ -92,13 +94,11 @@ public class SearchActivity extends AppCompatActivity {
                         if(!queryDocumentSnapshots.isEmpty()) {
 
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                            Log.d("TEST", Integer.toString(list.size()));
 
-                            for(DocumentSnapshot d : list) {
+                            for(DocumentSnapshot dss : list) {
 
-                                Search s = d.toObject(Search.class);
-                                Log.d("TEST", s.toString());
-                                //getSearchList().add(s);
+                                Search s = dss.toObject(Search.class);
+                                getSearchList().add(s);
 
                             }
 
@@ -106,8 +106,10 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 });
 
-        //Log.d("Liste", this.searchList.toString());
+    }
 
+    public void viewTags(){
+        ;
     }
 
     public EditText getSearchText() {
