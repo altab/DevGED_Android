@@ -1,20 +1,25 @@
 package fr.pcohen.devged.business;
 
+import java.util.Date;
 import java.util.List;
 
 public class Search {
 
     private String title;
-    private String ressource;
-    private String date ;
+    private String res;
+    private Date date ;
     private List<String> tags;
+    private String type;
 
-    public Search(String title, String ressource, String date, List<String> tags) {
+    public Search(String title, String res, Date date, List<String> tags, String type) {
         this.title = title;
-        this.ressource = ressource;
+        this.res = res;
         this.date = date;
         this.tags = tags;
+        this.type = type;
     }
+
+    public Search(){};
 
     public String getTitle() {
         return title;
@@ -24,19 +29,19 @@ public class Search {
         this.title = title;
     }
 
-    public String getRessource() {
-        return ressource;
+    public String getRes() {
+        return res;
     }
 
-    public void setRessource(String ressource) {
-        this.ressource = ressource;
+    public void setRes(String res) {
+        this.res = res;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -48,13 +53,22 @@ public class Search {
         this.tags = tags;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return "Search[" +
+        return "Search{" +
                 "title='" + title + '\'' +
-                ", ressource='" + ressource + '\'' +
+                ", res='" + res + '\'' +
                 ", date='" + date + '\'' +
                 ", tags=" + tags +
-                ']';
+                ", type='" + type + '\'' +
+                '}';
     }
 }
