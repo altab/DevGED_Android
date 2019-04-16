@@ -40,5 +40,5 @@ public class tagRowAdapter extends RecyclerView.Adapter<tagRowAdapter.ViewHolder
         return 0;
     }
 
-    /*TODO finir tagRowAdapter https://guides.codepath.com/android/using-the-recyclerview
+    /*TODO finir tagRowAdapter https://guides.codepath.com/android/using-the-recyclerview*/
 }
