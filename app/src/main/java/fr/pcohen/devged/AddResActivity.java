@@ -128,11 +128,11 @@ public class AddResActivity extends AppCompatActivity implements AdapterView.OnI
                     daoFirestore.addRes( createSearch());
 
                     String message = "Ressource : " + searchTitle +" Ajoutée";
-                    Toast.makeText(AddResActivity.this, message , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddResActivity.this, message , Toast.LENGTH_LONG).show();
 
                     startActivity(getIntent());
                     finish();
-                    
+
                 }
 
             }
