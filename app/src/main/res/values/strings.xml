@@ -29,5 +29,6 @@
         completions."
     </string>
     <string name="title_activity_main2">Add new ressource</string>
+    <string name="title_activity_result2">ResultActivity2</string>
 
 </resources>
